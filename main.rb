@@ -33,6 +33,8 @@ if option[:generate]
   end
 end
 
+# Find MAX name length (for better print)
+max_path_length = hidden_file_names.map{|n| File.join(DIR, n)}.max_by{|n| n.length}.length
 
 hidden_file_names.each{|name|
   # Create hidden file path
@@ -44,8 +46,10 @@ hidden_file_names.each{|name|
 
   # If checking is enable
   if option[:check]
+    # Create spaces for better print
+    padding_space = ' ' * (max_path_length - hidden_file_path.length)
     # Print path
-    puts("Check: #{hidden_file_path} -> #{new_path}")
+    puts("Check: #{hidden_file_path}#{padding_space} ->  #{new_path}")
   end
 
 
