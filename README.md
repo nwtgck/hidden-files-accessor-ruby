@@ -2,18 +2,24 @@
 
 Creating symbolic files to hidden files
 
+## Feature
+
+* Written in Ruby
+* Use only standard library
+* Safe generation (checking before generating)
+
 ## How to use
 
-### Generate symbolic files to hiddens
+### Generate symbolic files to corresponding hidden files
 
-The following code generate some symbolic files under `$HOME/hidden-access`.
+The following code generates some symbolic files under `$HOME/hidden-access`.
 
 ```sh
 $ ruby main.rb --generate $HOME
 ```
 You can change `$HOME` to any directory path.
 
-You can alos use `-g`, which is short for `--ganerate`
+You can also use `-g`, which is short for `--ganerate`
 
 ### Only check
 
@@ -44,10 +50,3 @@ Check: /Users/Ryo/.cargo                       ->  /Users/Ryo/hidden-access/carg
 ```
 
 You can also use `-c`, which is short for `--check`
-
-
-## Feature
-
-* Written in Ruby
-* Use only standard library
-* Checking before generating
