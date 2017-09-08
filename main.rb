@@ -25,9 +25,12 @@ hidden_file_names  = Dir.open(DIR).select{|n| n.start_with?('.') && n != '.' && 
 # Create access directory path
 access_parent_path = File.join(DIR, ACCESS_DIR_NAME)
 
-# Create access directory if not exists
-if !File.exist?(access_parent_path)
-  Dir.mkdir(access_parent_path)
+# If generating is enable
+if option[:generate]
+  # Create access directory if not exists
+  if !File.exist?(access_parent_path)
+    Dir.mkdir(access_parent_path)
+  end
 end
 
 
