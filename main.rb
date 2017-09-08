@@ -1,3 +1,13 @@
+require 'optparse'
+
+opt = OptionParser.new
+
+option = {}
+opt.on('-c', '--check'){|v| option[:check] = v}
+opt.on('-g', '--generate'){|v| option[:generate] = v}
+
+opt.parse!(ARGV)
+
 # Parent directory, which holds hidden files
 DIR = ARGV[0]
 
@@ -29,8 +39,24 @@ hidden_file_names.each{|name|
   # Create symbolic new path
   new_path         = File.join(access_parent_path, name_without_dot)
 
-  # Create symbolic link if not exists
-  if !File.exists?(new_path)
-    File.symlink(hidden_file_path, new_path)
+  # If checking is enable
+  if option[:check]
+    # Print path
+    puts("Check: #{hidden_file_path} -> #{new_path}")
+  end
+
+
+  # If generating is enable
+  if option[:generate]
+    # Create symbolic link if not exists
+    if !File.exists?(new_path)
+      File.symlink(hidden_file_path, new_path)
+    end
   end
 }
+
+if option[:generate]
+  puts("Generated!")
+else
+  puts("<Not generated>")
+end
